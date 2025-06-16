@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive;
+            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+            background-image: url('https://cdn.pixabay.com/photo/2016/10/29/01/36/abstract-1779608_1280.png');
+            background-size: cover;
+            overflow: hidden;
+            animation: backgroundMove 20s infinite linear;
+            position: relative;
+        }
+
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            filter: blur(15px);
+            opacity: 0;
+            z-index: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        @keyframes backgroundMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            color: #fff;
+            animation: slideInFromBottom 1.5s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3em;
+            animation: popIn 2s ease-out forwards, colorChange 4s infinite;
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #ff6f61;
+            }
+
+            50% {
+                color: #6a5acd;
+            }
+
+            100% {
+                color: #ff6f61;
+            }
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-top: 20px;
+            animation: fadeIn 3s ease-out forwards;
+        }
+
+        .photo-gallery {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeIn 3s ease-out forwards;
+            position: relative;
+            z-index: 2;
+        }
+
+        .photo-gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromBottom {
+            0% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            animation: fall 10s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-overlay" id="bgOverlay"></div>
+
+    <div class="container">
+        <h1>🎉 Happy Birthday, ! 🎉</h1>
+        <p>Wishing you a day filled with love, laughter, and sweet memories!</p>
+        <p>On your special day, I want you to know how incredibly proud I am to walk this life with you. You inspire me
+            with your strength, your smile, and your unshakeable positivity. Through every high and low, I promise to
+            stand beside you, holding your hand and cheering you on. May this birthday bring you all the joy your heart
+            desires, because you truly deserve the world. Here's to more laughter, shared dreams, and magical moments
+            together. Happy Birthday, Radhu</p>
+        <div class="photo-gallery">
+            <img src="https://happybirthdayblessings.com/wp-content/uploads/2023/03/Birthday-wishes-for-friend-with-cupcake-scaled.jpg"
+                alt="Memory 1" style="--bg:url('photo1.jpg');" />
+            <img src="https://i.pinimg.com/736x/a3/2b/a9/a32ba90c3c7758d51903b41b363865d3.jpg" alt="Memory 2"
+                style="--bg:url('photo2.jpg');" />
+            <img src="https://img.freepik.com/free-photo/birthday-celebration-card_23-2151899335.jpg?semt=ais_hybrid&w=740"
+                alt="Memory 3" style="--bg:url('photo3.jpg');" />
+        </div>
+    </div>
+
+
+    <audio id="birthdayMusic" autoplay loop>
+        <source src="hp.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="music-control">
+        <button onclick="toggleMusic()">🔈 Toggle Music</button>
+    </div>
+
+    <script>
+        const music = document.getElementById('birthdayMusic');
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+
+        function showBg(src) {
+            const bg = document.getElementById('bgOverlay');
+            bg.style.backgroundImage = `url(${src})`;
+            bg.style.opacity = '0.4';
+        }
+
+        function clearBg() {
+            const bg = document.getElementById('bgOverlay');
+            bg.style.opacity = '0';
+        }
+
+        // Generate falling confetti
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            confetti.style.animationDuration = 5 + Math.random() * 5 + 's';
+            document.body.appendChild(confetti);
+        }
+    </script>
+</body>
+
+</html>
+
+<!--  <div class="photo-gallery">
+      <img src="https://happybirthdayblessings.com/wp-content/uploads/2023/03/Birthday-wishes-for-friend-with-cupcake-scaled.jpg" alt="Memory 1" style="--bg:url('photo1.jpg');" />
+      <img src="https://i.pinimg.com/736x/a3/2b/a9/a32ba90c3c7758d51903b41b363865d3.jpg" alt="Memory 2" style="--bg:url('photo2.jpg');" />
+      <img src="https://img.freepik.com/free-photo/birthday-celebration-card_23-2151899335.jpg?semt=ais_hybrid&w=740" alt="Memory 3" style="--bg:url('photo3.jpg');" />
+    </div> -->
